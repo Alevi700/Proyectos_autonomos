@@ -2,7 +2,7 @@
 #define Stack_H
 
 typedef struct Stack Stack;
-typedef struct Node;
+typedef struct Node Node;
 
 Stack* Init_Stack();
 
