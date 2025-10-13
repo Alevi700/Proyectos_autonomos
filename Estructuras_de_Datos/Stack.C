@@ -38,3 +38,8 @@ void* pop(Stack* stack){
     free(stack_node);
     return element;
 }
+
+void* top(Stack* stack){
+    if(stack->top == NULL) return NULL;
+    return stack->top->element;
+}
