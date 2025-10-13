@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
 
+#include <stdlib.h>
 
 typedef struct Node{
     struct Node* next;
@@ -28,4 +27,14 @@ void push(Stack* stack, void* element){
 
     stack->top = new_node;
     stack->size++;
+}
+
+void* pop(Stack* stack){
+    if(stack->top == NULL) return NULL;
+    Node* stack_node = stack->top;
+    stack->top = stack->top->next;
+    stack->size--;
+    void* element = stack_node->element;
+    free(stack_node);
+    return element;
 }
