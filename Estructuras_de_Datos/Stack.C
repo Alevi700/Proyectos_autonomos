@@ -2,13 +2,13 @@
 #include<stdlib.h>
 
 
-typedef struct Nodo{
-    struct Nodo* next;
+typedef struct Node{
+    struct Node* next;
     void* element; 
-}Nodo;
+}Node;
 
 typedef struct Stack{
-    Nodo* top;
+    Node* top;
     int size;
 }Stack;
 
@@ -18,4 +18,14 @@ Stack* Init_Stack(){
     stack->size = 0;
     stack->top = NULL;
     return stack;
+}
+
+void push(Stack* stack, void* element){
+    Node* new_node = malloc(sizeof(Node));
+    if(!new_node) return;
+    new_node->element = element;
+    new_node->next = stack->top;
+
+    stack->top = new_node;
+    stack->size++;
 }
