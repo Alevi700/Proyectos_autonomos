@@ -2,18 +2,20 @@
 #define Stack_H
 
 typedef struct Stack Stack;
-typedef struct Nodo;
+typedef struct Node;
 
 Stack* Init_Stack();
 
 void push(Stack* p, void* element);
 
-void pop(Stack* p, void* element);
+void* pop(Stack* p);
 
-void top(Stack* p, void* direccion);
+void* top(Stack* p);
 
-bool is_empty(Stack* p);
+int is_empty(Stack* p);
 
 int size(Stack* p);
+
+void free_stack(Stack* stack);
 
 #endif

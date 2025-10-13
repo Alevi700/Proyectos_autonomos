@@ -19,6 +19,10 @@ Stack* Init_Stack(){
     return stack;
 }
 
+int is_empty(Stack* stack){
+    return stack->top == NULL;  
+}
+
 void push(Stack* stack, void* element){
     Node* new_node = malloc(sizeof(Node));
     if(!new_node) return;
@@ -30,7 +34,7 @@ void push(Stack* stack, void* element){
 }
 
 void* pop(Stack* stack){
-    if(stack->top == NULL) return NULL;
+    if(is_empty(stack)) return NULL;
     Node* stack_node = stack->top;
     stack->top = stack->top->next;
     stack->size--;
@@ -40,6 +44,21 @@ void* pop(Stack* stack){
 }
 
 void* top(Stack* stack){
-    if(stack->top == NULL) return NULL;
+    if(is_empty(stack)) return NULL;
     return stack->top->element;
 }
+
+int size(Stack* stack){
+    return stack->size;
+}
+
+void free_stack(Stack* stack){
+    Node* node = stack->top;
+    while(node){
+        Node* tmp = node;
+        node = node->next;
+        free(tmp);
+    }
+    free(stack);
+}
+
