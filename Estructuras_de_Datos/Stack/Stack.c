@@ -20,7 +20,10 @@ Stack* Init_Stack(){
 }
 
 int is_empty(Stack* stack){
-    return stack->top == NULL;  
+    if(stack->size == 0){
+        return 1;
+    }
+    return -1;
 }
 
 void push(Stack* stack, void* element){
