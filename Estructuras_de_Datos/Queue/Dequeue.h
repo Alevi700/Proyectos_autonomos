@@ -20,7 +20,7 @@ void* getFirst(Dequeue* dq);
 
 void* getLast(Dequeue* dq);
 
-
+void free_dequeue(Dequeue* dq)
 
 
 

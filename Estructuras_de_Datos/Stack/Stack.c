@@ -11,7 +11,7 @@ typedef struct Stack{
     int size;
 }Stack;
 
-Stack* Init_Stack(){
+Stack* init_Stack(){
     Stack* stack = malloc(sizeof(Stack));
     if(!stack) return NULL;
     stack->size = 0;
@@ -64,4 +64,6 @@ void free_stack(Stack* stack){
     }
     free(stack);
 }
+
+
 
