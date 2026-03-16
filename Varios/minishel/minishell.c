@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #define MAX_LINE 4096
 #define MAX_ARG 10
-#define MAX_ARG_LEN 128
 
 typedef struct{
-    char command[MAX_ARG_LEN];
-    char args[MAX_ARG][MAX_ARG_LEN];
+    char* command;
+    char** argv;
+    int argc;
 }Command;
 
 void read_comand(char* buffer);
@@ -15,9 +15,12 @@ void parse_comand(char* buffer, Command* cmmd);
 
 
 
-int main(int argc, char *argv[]) {
+int main() {
     
-    Command* cmmd = malloc(sizeof(Command)) ;
+    Command* cmmd = malloc(sizeof(Command));
+    cmmd->command = NULL;
+    cmmd->argv = malloc(sizeof(char*)*MAX_ARG);
+    cmmd->argc = 0;
     char buffer [MAX_LINE];
 
     while (1){
@@ -46,17 +49,19 @@ void read_comand(char* buffer){
 void parse_comand(char* buffer, Command* cmmd){
 
     char* token = strtok(buffer, " ");
-    strcpy(cmmd->command, token);
+    cmmd->command = token;
     token = strtok(NULL, " ");
 
     int i = 0;
     while(token != NULL){
-        strcpy(cmmd->args[i], token);
+        cmmd->argv[i] = token;
         token = strtok(NULL, " ");
         i++;
     }
 
+    cmmd->argv[i] = NULL;
+    cmmd->argc = i;
     for(int j = 0; j<i; j++){
-        printf("%s", cmmd->args[j]);
+        printf("%s ", cmmd->argv[j]);
     }
 }
